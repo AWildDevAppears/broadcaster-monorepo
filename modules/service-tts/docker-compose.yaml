@@ -1,0 +1,30 @@
+services:
+  voxtral:
+    build: .
+    image: vllm-voxtral:local
+    container_name: voxtral-tts
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+
+      - "8000:8000"
+    shm_size: '8gb'
+    deploy:
+
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    command: >
+      serve mistralai/Voxtral-4B-TTS-2603
+      --omni
+      --tokenizer-mode mistral
+      --gpu-memory-utilization 0.7
+      --max-model-len 2048
+      --enforce-eager
+    restart: unless-stopped
