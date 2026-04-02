@@ -357,8 +357,16 @@
             "projectFolder": "modules/service-news-normaliser"
         },
         {
+            "packageName": "service-channel-hopper",
+            "projectFolder": "modules/service-channel-hopper"
+        },
+        {
             "packageName": "service-videographer",
             "projectFolder": "modules/service-videographer"
+        },
+        {
+            "packageName": "lib-proto",
+            "projectFolder": "modules/lib-proto"
         }
   ]
 }

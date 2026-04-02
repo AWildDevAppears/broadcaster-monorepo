@@ -25,6 +25,7 @@ server.post("/generate", async (c) => {
 
     cache.currentVideo = await saveToBuffer(audioTrack)
 
+    return c.json({ status: "success" })
 });
 
 server.get("/feed", async (c) => {

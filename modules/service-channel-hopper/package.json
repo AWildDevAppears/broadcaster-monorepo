@@ -1,5 +1,5 @@
 {
-  "name": "service-commander",
+  "name": "service-channel-hopper",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -11,7 +11,6 @@
     "build": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
-    "bullmq": "~5.71.1",
     "@hono/node-server": "~1.19.12",
     "hono": "~4.12.9",
     "zod": "~4.3.6"

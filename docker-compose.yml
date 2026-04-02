@@ -1,0 +1,107 @@
+
+services:
+  commander-cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  voxtral:
+    build:
+      context: .
+      dockerfile: Dockerfile.voxtral
+    image: vllm-voxtral:local
+    container_name: voxtral-tts
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    ports:
+
+      - "8000:8000"
+    shm_size: '8gb'
+    deploy:
+
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    command: >
+      serve mistralai/Voxtral-4B-TTS-2603
+      --omni
+      --tokenizer-mode mistral
+      --gpu-memory-utilization 0.7
+      --max-model-len 2048
+      --enforce-eager
+    restart: unless-stopped
+
+  commander:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/service-commander/dist/index.js
+    environment:
+      - REDIS_HOST=commander-cache
+    depends_on:
+      - commander-cache
+
+  normaliser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/service-news-normaliser/dist/index.js
+    environment:
+      - REDIS_HOST=commander-cache
+    depends_on:
+      - commander-cache
+
+  scriptwriter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/service-scriptwriter/dist/index.js
+    environment:
+      - REDIS_HOST=commander-cache
+    depends_on:
+      - commander-cache
+
+  videographer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/service-videographer/dist/index.js
+    environment:
+      - REDIS_HOST=commander-cache
+    depends_on:
+      - commander-cache
+
+  channel-hopper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/service-channel-hopper/dist/index.js
+    ports:
+      - "3000:3000"
+    depends_on:
+      - commander-cache
+
+  ui-console:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder
+    command: node modules/ui-console/dist/index.js
+    ports:
+      - "8080:8080"
+
+volumes:
+  redis_data:
