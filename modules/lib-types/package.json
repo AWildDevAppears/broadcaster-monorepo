@@ -1,5 +1,5 @@
 {
-  "name": "@awda-bc/service-scriptwriter",
+  "name": "@awda-bc/lib-types",
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
@@ -8,11 +8,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no test specified\" && exit 0"
+    "build": "tsc"
   },
   "dependencies": {
-    "@hono/node-server": "~1.19.12",
-    "hono": "~4.12.9",
     "zod": "~4.3.6"
   },
   "devDependencies": {

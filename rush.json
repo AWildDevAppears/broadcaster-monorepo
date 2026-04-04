@@ -337,36 +337,36 @@
    */
   "projects": [
         {
-            "packageName": "ui-console",
+            "packageName": "@awda-bc/ui-console",
             "projectFolder": "modules/ui-console"
         },
         {
-            "packageName": "ui-controller",
+            "packageName": "@awda-bc/ui-controller",
             "projectFolder": "modules/ui-controller"
         },
         {
-            "packageName": "service-commander",
+            "packageName": "@awda-bc/service-commander",
             "projectFolder": "modules/service-commander"
         },
         {
-            "packageName": "service-scriptwriter",
+            "packageName": "@awda-bc/service-scriptwriter",
             "projectFolder": "modules/service-scriptwriter"
         },
         {
-            "packageName": "service-news-normaliser",
+            "packageName": "@awda-bc/service-news-normaliser",
             "projectFolder": "modules/service-news-normaliser"
         },
         {
-            "packageName": "service-channel-hopper",
+            "packageName": "@awda-bc/service-channel-hopper",
             "projectFolder": "modules/service-channel-hopper"
         },
         {
-            "packageName": "service-videographer",
+            "packageName": "@awda-bc/service-videographer",
             "projectFolder": "modules/service-videographer"
         },
         {
-            "packageName": "lib-proto",
-            "projectFolder": "modules/lib-proto"
+            "packageName": "@awda-bc/lib-types",
+            "projectFolder": "modules/lib-types"
         }
   ]
 }

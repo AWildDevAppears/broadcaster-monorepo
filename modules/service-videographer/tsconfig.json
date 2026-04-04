@@ -20,6 +20,9 @@
     "resolveJsonModule": true,
 
     "sourceMap": true,
+    "paths": {
+      "@awda-bc/*": ["../*/src"]
+    },
     "declaration": true
   },
   "include": ["src/**/*"],

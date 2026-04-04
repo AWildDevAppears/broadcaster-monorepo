@@ -1,5 +1,5 @@
 {
-  "name": "ui-controller",
+  "name": "@awda-bc/ui-controller",
   "version": "1.0.0",
   "description": "The interface for sending requests to change the display of the console.",
   "license": "ISC",
@@ -9,5 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "echo \"Error: no test specified\" && exit 0"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.2",
+    "@types/node": "~25.5.0",
+    "ts-node": "~10.9.2"
   }
 }
