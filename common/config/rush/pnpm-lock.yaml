@@ -75,9 +75,15 @@ importers:
 
   ../../modules/service-news-normaliser:
     dependencies:
+      '@awda-bc/lib-types':
+        specifier: workspace:*
+        version: link:../lib-types
       '@hono/node-server':
         specifier: ~1.19.12
         version: 1.19.12(hono@4.12.9)
+      bullmq:
+        specifier: ~5.73.0
+        version: 5.73.0
       hono:
         specifier: ~4.12.9
         version: 4.12.9
@@ -818,6 +824,9 @@ packages:
 
   bullmq@5.72.1:
     resolution: {integrity: sha512-wfd1jLxE+SzpmN0rAkXBAxsOKfWibUhaqZ9By55FsumMpCnJWSv5G2tMiNVR9SsWk4fuEqwa6H9YRbKd37IJjw==}
+
+  bullmq@5.73.0:
+    resolution: {integrity: sha512-uX8RbQaBbzk0H9JYXKGrNxpDqFcDBQFFKCyKarMjtfYHuct5X48M2LUq3Q9FXt/P2kWzPrqYlNnNqsico7ty5A==}
 
   caniuse-lite@1.0.30001781:
     resolution: {integrity: sha512-RdwNCyMsNBftLjW6w01z8bKEvT6e/5tpPVEgtn22TiLGlstHOVecsX2KHFkD5e/vRnIE4EGzpuIODb3mtswtkw==}
@@ -2014,6 +2023,18 @@ snapshots:
       - supports-color
 
   bullmq@5.72.1:
+    dependencies:
+      cron-parser: 4.9.0
+      ioredis: 5.10.1
+      msgpackr: 1.11.5
+      node-abort-controller: 3.1.1
+      semver: 7.7.4
+      tslib: 2.8.1
+      uuid: 11.1.0
+    transitivePeerDependencies:
+      - supports-color
+
+  bullmq@5.73.0:
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.10.1

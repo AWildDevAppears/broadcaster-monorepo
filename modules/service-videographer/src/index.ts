@@ -1,16 +1,16 @@
 import { Queue, Worker } from "bullmq";
 import { ESpeaker, pause, say, stitchAudio } from "./voice/voice.js";
 import { saveToBuffer } from "./output/output.js";
-import { types } from "@awda-bc/lib-types";
+import { types, VideographerRequestGenerateVideo, VideographerResponseVideo } from "@awda-bc/lib-types";
 
 async function main() {
     const connection =  types.getBullMQconfig(process.env).connection;
 
-    const responseQueue = new Queue("videographerResponseVideo", {
+    const responseQueue = new Queue(types.VIDEOGRAPHER_VIDEO_RESPONSE, {
         connection,
     });
 
-    new Worker("videographerRequestGenerateVideo", async () => {
+    new Worker<VideographerRequestGenerateVideo>(types.VIDEOGRAPHER_GENERATE_VIDEO_REQUEST, async () => {
         const audioTrack = await stitchAudio([
             say("Hello World"),
             pause(1.5),
@@ -24,12 +24,14 @@ async function main() {
 
         const buffer =  await saveToBuffer(audioTrack);
 
-        responseQueue.add("videographerResponseVideo", {
-            variant: "videographerResponseVideo",
+        const response: VideographerResponseVideo = types.videographerResponseVideo.parse({
+            variant: types.VIDEOGRAPHER_VIDEO_RESPONSE,
             spec: {
                 videoRaw: buffer.toString("base64"),
             }
-        })
+        });
+
+        responseQueue.add(types.VIDEOGRAPHER_VIDEO_RESPONSE, response);
 
         return buffer;
 
