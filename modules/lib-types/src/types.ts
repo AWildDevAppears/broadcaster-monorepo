@@ -32,21 +32,26 @@ export const commandChannel = z.discriminatedUnion("variant", [
  */
 
 
-export const bullMQconfig = {
-    name: "broadcaster-controller",
-    connection: { host: 'localhost', port: 6379 },
-} as const;
+export function getBullMQconfig(env: Record<string, string | undefined>) {
+    return {
+        name: "broadcaster-controller",
+        connection: env.REDIS_HOST ? { host: env.REDIS_HOST, port: 6379 } : { host: env.REDIS_HOST || 'localhost', port: 6379 },
+    };
+}
 
 // VIDEOGRAPHER
+
+export const VIDEOGRAPHER_GENERNATE_VIDEO_REQUEST = "videographerRequestGenerateVideo";
 export const videographerRequestGenerateVideo = z.object({
-    variant: "videographerRequestGenerateVideo",
+    variant: VIDEOGRAPHER_GENERNATE_VIDEO_REQUEST,
     spec: z.object({
         script: z.array(z.string()),
     }),
 });
 
+export const VIDEOGRAPHER_VIDEO_RESPONSE = "videographerResponseVideo";
 export const videographerResponseVideo = z.object({
-    variant: "videographerResponseVideo",
+    variant: VIDEOGRAPHER_VIDEO_RESPONSE,
     spec: z.object({
         videoRaw: z.string(),
     }),

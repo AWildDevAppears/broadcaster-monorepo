@@ -1,9 +1,10 @@
 import { Queue, Worker } from "bullmq";
 import { ESpeaker, pause, say, stitchAudio } from "./voice/voice.js";
 import { saveToBuffer } from "./output/output.js";
+import { types } from "@awda-bc/lib-types";
 
 async function main() {
-    const connection = process.env.REDIS_HOST ? { host: process.env.REDIS_HOST, port: 6379 } : { host: process.env.REDIS_HOST || 'localhost', port: 6379 };
+    const connection =  types.getBullMQconfig(process.env).connection;
 
     const responseQueue = new Queue("videographerResponseVideo", {
         connection,
