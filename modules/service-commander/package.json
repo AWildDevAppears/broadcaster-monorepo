@@ -11,10 +11,11 @@
     "build": "echo \"Error: no test specified\" && exit 0"
   },
   "dependencies": {
-    "bullmq": "~5.71.1",
+    "bullmq": "~5.73.0",
     "@hono/node-server": "~1.19.12",
     "hono": "~4.12.9",
-    "zod": "~4.3.6"
+    "zod": "~4.3.6",
+    "@awda-bc/lib-types": "workspace:*"
   },
   "devDependencies": {
     "typescript": "~6.0.2",

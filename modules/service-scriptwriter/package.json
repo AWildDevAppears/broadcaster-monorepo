@@ -13,7 +13,9 @@
   "dependencies": {
     "@hono/node-server": "~1.19.12",
     "hono": "~4.12.9",
-    "zod": "~4.3.6"
+    "zod": "~4.3.6",
+    "bullmq": "~5.73.0",
+    "@awda-bc/lib-types": "workspace:*"
   },
   "devDependencies": {
     "typescript": "~6.0.2",
