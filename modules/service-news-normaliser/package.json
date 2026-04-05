@@ -4,18 +4,21 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Error: no test specified\" && exit 0"
+    "dev": "node --loader ts-node/esm --experimental-specifier-resolution=node src/index.ts",
+    "build": "tsc"
   },
   "dependencies": {
     "zod": "~4.3.6",
+    "fast-xml-parser": "^5.0.0",
     "@hono/node-server": "~1.19.12",
     "hono": "~4.12.9",
     "bullmq": "~5.73.0",
-    "@awda-bc/lib-types": "workspace:*"
+    "@awda-bc/lib-types": "workspace:*",
+    "rss-parser": "~3.13.0"
   },
   "devDependencies": {
     "typescript": "~6.0.2",

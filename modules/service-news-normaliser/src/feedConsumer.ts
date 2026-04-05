@@ -2,15 +2,11 @@
 * Copyright (c) AWildDevAppears
 */
 
+import { parsers } from "./consumers";
 
-class FeedHandler {
-    constructor(url: string) {
-        this.url = url;
-    }
+
+export async function normaliseFeeds() {
+    const rawArticles = await Promise.all(parsers.map((parser) => parser.normalise()));
+
+    console.log(rawArticles)
 }
-
-
-const feeds: Record<string, > = {};
-
-
-function  normaliseFeeds() {}
