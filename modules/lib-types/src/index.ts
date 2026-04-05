@@ -1,2 +1,2 @@
-export * from "./types.js"
-export * as types from "./types.js"
+export * from "./types.ts"
+export * as types from "./types.ts"
